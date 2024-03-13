@@ -1,0 +1,73 @@
+docker run \
+    -it \
+    --network=host \
+    -v "/usr/local/share/ca-certificates/Yandex/YandexInternalRootCA.crt:/data/CA.pem" \
+    edenhill/kcat:1.7.1 -b rc1a-o2sosifhuilkhdgo.mdb.yandexcloud.net:9091 \
+    -X security.protocol=SASL_SSL \
+    -X sasl.mechanisms=SCRAM-SHA-512 \
+    -X sasl.username=producer_consumer \
+    -X sasl.password="producer_consumer" \
+    -X ssl.ca.location=/data/CA.pem \
+    -L
+
+docker run \
+    -it \
+    --name "kcat" \
+    --network=host \
+    --rm \
+    -v "/usr/local/share/ca-certificates/Yandex/YandexInternalRootCA.crt:/data/CA.pem" \
+    edenhill/kcat:1.7.1 -b rc1a-o2sosifhuilkhdgo.mdb.yandexcloud.net:9091 \
+    -X security.protocol=SASL_SSL \
+    -X sasl.mechanisms=SCRAM-SHA-512 \
+    -X sasl.username=producer_consumer \
+    -X sasl.password="producer_consumer" \
+    -X ssl.ca.location=/data/CA.pem \
+    -t order-service_orders \
+    -C \
+    -o beginning
+
+curl -X POST https://order-gen-service.sprint9.tgcloudenv.ru/test_kafka \
+-H 'Content-Type: application/json; charset=utf-8' \
+--data-binary @- << EOF
+{
+    "student": "livingforsuccess",
+    "kafka_connect":{
+        "host": "rc1a-o2sosifhuilkhdgo.mdb.yandexcloud.net",
+        "port": 9091,
+        "topic": "order-service_orders",
+        "producer_name": "producer_consumer",
+        "producer_password": "producer_consumer"
+    }
+}
+EOF
+
+
+docker run \
+    -it \
+    --name "kcat" \
+    --network=host \
+    --rm \
+    -v "/usr/local/share/ca-certificates/Yandex/YandexInternalRootCA.crt:/data/CA.pem" \
+    edenhill/kcat:1.7.1 -b rc1a-o2sosifhuilkhdgo.mdb.yandexcloud.net:9091 \
+    -X security.protocol=SASL_SSL \
+    -X sasl.mechanisms=SCRAM-SHA-512 \
+    -X sasl.username=producer_consumer \
+    -X sasl.password="producer_consumer" \
+    -X ssl.ca.location=/data/CA.pem \
+    -t order-service_orders \
+    -C \
+    -o beginning
+
+
+
+curl -X POST https://order-gen-service.sprint9.tgcloudenv.ru/delete_kafka \
+-H 'Content-Type: application/json; charset=utf-8' \
+--data-binary @- << EOF
+{
+    "student": "ТВОЙ_НИК"
+}
+EOF
+
+перепишем в одну строку, используя -d и экранируем  внутренние кавычки
+
+curl -X POST -H "Content-Type: application/json" -d "{\"student\":\"ТВОЙ_НИК\"}"  https://order-gen-service.sprint9.tgcloudenv.ru/delete_kafka
