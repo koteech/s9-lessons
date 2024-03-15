@@ -14,5 +14,30 @@
         <property name="ssl" value="true" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="sprint9dwh@rc1b-rjgttxbo0g1shtkx.mdb.yandexcloud.net" uuid="2019b74d-3047-499c-aae8-a5bb3840a31d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://rc1b-rjgttxbo0g1shtkx.mdb.yandexcloud.net:6432/sprint9dwh</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="com.intellij.clouds.kubernetes.db.host.port" />
+        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
+        <property name="com.intellij.clouds.kubernetes.db.resource.type" value="Deployment" />
+        <property name="com.intellij.clouds.kubernetes.db.container.port" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="jeks0n" uuid="ce497930-2565-48ad-88b1-fc6a98ef3b21">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://rc1b-kekw7507vc4at0ck.mdb.yandexcloud.net:6432/sprint9dwh</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="com.intellij.clouds.kubernetes.db.host.port" />
+        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
+        <property name="com.intellij.clouds.kubernetes.db.container.port" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

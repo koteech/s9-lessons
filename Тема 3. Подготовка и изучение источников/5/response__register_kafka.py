@@ -1,12 +1,12 @@
 import requests
 import json
 
-url = "https://order-gen-service.sprint9.tgcloudenv.ru/register_kafka "
+url = "https://order-gen-service.sprint9.tgcloudenv.ru/register_kafka"
 
 data = {
     "student": "livingforsuccess",
     "kafka_connect": {
-        "host": "rc1a-o2sosifhuilkhdgo.mdb.yandexcloud.net",
+        "host": "rc1d-rlrisj0lmp0lkant.mdb.yandexcloud.net",
         "port": 9091,
         "topic": "order-service_orders",
         "producer_name": "producer_consumer",
